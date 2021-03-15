@@ -7,7 +7,7 @@ class BoardsService {
     return boards
   }
 
-  async findById(id) {
+  async getBoardById(id) {
     const board = await dbContext.Boards.findById(id)
     if (!board) {
       throw new BadRequest('Invalid Id')
@@ -22,6 +22,15 @@ class BoardsService {
     } catch (err) {
       console.error(err)
     }
+  }
+
+  async deleteBoard(boardId, userId) {
+    const boardToDelete = await dbContext.Boards.findOneAndDelete({ _id: boardId, creatorId: userId })
+    if (!boardToDelete) {
+      throw new BadRequest("You're not the creator or you have the wrong board ID")
+    }
+
+    return boardToDelete
   }
 }
 
