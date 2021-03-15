@@ -1,9 +1,9 @@
 import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
-import { boardsService } from '../services/BoardsService'
-export class BoardsController extends BaseController {
+import { tasksService } from '../services/TasksService'
+export class TasksController extends BaseController {
   constructor() {
-    super('api/boards')
+    super('api/tasks')
     this.router
       .get('', this.getAll)
       .use(Auth0Provider.getAuthorizedUserInfo)
@@ -15,7 +15,7 @@ export class BoardsController extends BaseController {
 
   async getAll(req, res, next) {
     try {
-      res.send(await boardsService.find())
+      res.send(await tasksService.find())
     } catch (error) {
       next(error)
     }
@@ -23,7 +23,7 @@ export class BoardsController extends BaseController {
 
   async getById(req, res, next) {
     try {
-      res.send(await boardsService.getBoardById(req.params.id))
+      res.send(await tasksService.getTaskById(req.params.id))
     } catch (err) {
       next(err)
     }
@@ -34,7 +34,7 @@ export class BoardsController extends BaseController {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
       req.body.creatorId = req.userInfo.id
       req.body.creator = req.userInfo
-      res.send(await boardsService.createBoards(req.body))
+      res.send(await tasksService.createTask(req.body))
     } catch (error) {
       next(error)
     }
@@ -42,7 +42,7 @@ export class BoardsController extends BaseController {
 
   async delete(req, res, next) {
     try {
-      res.send(await boardsService.deleteBoard(req.params.id, req.userInfo.id))
+      res.send(await tasksService.deleteTask(req.params.id, req.userInfo.id))
     } catch (err) {
       next(err)
     }
