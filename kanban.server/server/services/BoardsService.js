@@ -17,7 +17,8 @@ class BoardsService {
   }
 
   async getListsByBoardId(id) {
-    const lists = await dbContext.Lists.find(l => l.boardId === id)
+    // in mongoose, MUST FEED IT OBJECT (query = {})
+    const lists = await dbContext.Lists.find({ boardId: id })
     if (!lists) {
       throw new BadRequest('invalid')
     }

@@ -21,5 +21,4 @@ class CommentsService {
     }
   }
 }
-export const commentsService = new class CommentsService {
-  ()
+export const commentsService = new CommentsService()

@@ -5,7 +5,7 @@ export class ListsController extends BaseController {
   constructor() {
     super('api/lists')
     this.router
-      .get('/:boardId/', this.getActiveLists)
+      .get('/:boardId/', this.getListsByBoard)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('/:id', this.getById)
       .delete('/:id', this.delete)
@@ -21,7 +21,7 @@ export class ListsController extends BaseController {
     }
   }
 
-  async getActiveLists(req, res, next) {
+  async getListsByBoard(req, res, next) {
     try {
       res.send(await listsService.find(req.params.id))
     } catch (err) {

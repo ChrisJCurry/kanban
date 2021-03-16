@@ -16,6 +16,15 @@ class TasksService {
     return task
   }
 
+  async getCommentsById(id) {
+    const comments = await dbContext.Comments.find({ taskId: id })
+    logger.log('hey')
+    if (!comments) {
+      throw new BadRequest('invalid')
+    }
+    return comments
+  }
+
   async createTask(newBoard) {
     try {
       const res = await dbContext.Tasks.create(newBoard)
