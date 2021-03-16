@@ -16,6 +16,7 @@ function log(type, content) {
 
 export const logger = {
   log() {
+    log('[KILL_THING]')
     log('log', arguments)
   },
   error() {
