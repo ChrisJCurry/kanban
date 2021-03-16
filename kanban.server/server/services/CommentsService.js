@@ -1,5 +1,6 @@
 import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
+import { logger } from '../utils/Logger'
 
 class CommentsService {
   async find(query = {}) {
@@ -20,7 +21,7 @@ class CommentsService {
       const res = await dbContext.Comments.create(newBoard)
       return res
     } catch (err) {
-      console.error(err)
+      logger.error(err)
     }
   }
 

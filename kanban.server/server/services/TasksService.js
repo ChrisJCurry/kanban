@@ -1,5 +1,6 @@
 import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
+import { logger } from '../utils/Logger'
 
 class TasksService {
   async find(query = {}) {
@@ -20,7 +21,7 @@ class TasksService {
       const res = await dbContext.Tasks.create(newBoard)
       return res
     } catch (err) {
-      console.error(err)
+      logger.error(err)
     }
   }
 
