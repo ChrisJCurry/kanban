@@ -25,7 +25,7 @@
                   <div class="col-6 col-sm-3 col-md-3">
                     <input type="text"
                            name="title"
-                           id="title"
+                           id="list-title"
                            class="form-control"
                            placeholder="Enter List title"
                            aria-describedby="helpId"

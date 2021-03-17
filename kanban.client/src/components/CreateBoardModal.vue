@@ -25,7 +25,7 @@
                   <div class="col-6 col-sm-3 col-md-3">
                     <input type="text"
                            name="title"
-                           id="title"
+                           id="board-title"
                            class="form-control"
                            placeholder="Enter Board title"
                            aria-describedby="helpId"

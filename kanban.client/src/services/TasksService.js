@@ -20,5 +20,15 @@ class TasksService {
       logger.error(err)
     }
   }
+
+  async create(taskData) {
+    try {
+      const res = await api.post('api/tasks', taskData)
+      AppState.tasks.push(res.data)
+      return res.data._id
+    } catch (err) {
+      logger.error(err)
+    }
+  }
 }
 export const tasksService = new TasksService()
