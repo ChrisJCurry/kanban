@@ -28,7 +28,6 @@ class BoardsService {
   }
 
   async getBoardById(boardId) {
-    AppState.board = {}
     try {
       const res = await api.get('api/boards/' + boardId)
       AppState.board = res.data

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { computed, onMounted, reactive } from 'vue'
+import { computed, onBeforeMount, onMounted, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import { AppState } from '../AppState'
 import { boardsService } from '../services/BoardsService'
@@ -21,8 +21,10 @@ export default {
       lists: computed(() => AppState.lists),
       tasks: computed(() => AppState.tasks)
     })
+    onBeforeMount(() => {
+      AppState.lists = []
+    })
     onMounted(() => {
-      AppState.board = {}
       boardsService.getBoardById(route.params.id)
     })
     return {
