@@ -25,7 +25,6 @@ class BoardsService {
 
   async getBoardById(boardId) {
     try {
-      AppState.board = {}
       const res = await api.get('api/boards/' + boardId)
       AppState.board = res.data
       listsService.getActiveLists(boardId)

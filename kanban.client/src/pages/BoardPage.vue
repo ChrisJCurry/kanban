@@ -22,6 +22,7 @@ export default {
       tasks: computed(() => AppState.tasks)
     })
     onMounted(() => {
+      AppState.board = {}
       boardsService.getBoardById(route.params.id)
     })
     return {
