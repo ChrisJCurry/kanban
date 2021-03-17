@@ -35,7 +35,7 @@ export class TasksController extends BaseController {
   async getCommentsById(req, res, next) {
     logger.log(req.params.id)
     try {
-      res.send(await tasksService.getCommentsById(req.params.id))
+      res.send(await tasksService.getCommentsByTaskId(req.params.id))
     } catch (err) {
       next(err)
     }

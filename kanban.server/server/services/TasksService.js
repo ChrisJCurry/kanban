@@ -16,7 +16,7 @@ class TasksService {
     return task
   }
 
-  async getCommentsById(id) {
+  async getCommentsByTaskId(id) {
     const comments = await dbContext.Comments.find({ taskId: id })
     logger.log('hey')
     if (!comments) {

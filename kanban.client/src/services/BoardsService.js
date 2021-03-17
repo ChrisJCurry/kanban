@@ -13,14 +13,14 @@ class BoardsService {
     }
   }
 
-  async getUsersBoards(userId) {
-    const usersBoards = []
+  async GetBoardsByUser(userId) {
+    const boards = []
     for (let i = 0; i < AppState.boards.length; i++) {
       if (AppState.boards[i].creatorId === userId) {
-        usersBoards.push(AppState.boards[i])
+        boards.push(AppState.boards[i])
       }
     }
-    return usersBoards
+    return boards
   }
 
   async getBoardById(boardId) {

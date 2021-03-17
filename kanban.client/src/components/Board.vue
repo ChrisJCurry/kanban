@@ -8,7 +8,6 @@
 
 <script>
 import { computed, reactive } from 'vue'
-// import { boardsService } from '../services/BoardsService'
 import { AppState } from '../AppState'
 
 export default {
