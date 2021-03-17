@@ -2,12 +2,16 @@ import { api } from './AxiosService'
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { listsService } from './ListsService'
+import { Board } from '../models/Board'
 
 class BoardsService {
   async getAllBoards() {
     try {
       const res = await api.get('api/boards')
-      AppState.boards = res.data
+      // AppState.boards = res.data
+
+      AppState.boards = res.data.map(b => new Board(b))
+      logger.log('it worked!', AppState.boards)
     } catch (error) {
       logger.log(error)
     }
@@ -24,6 +28,7 @@ class BoardsService {
   }
 
   async getBoardById(boardId) {
+    AppState.board = {}
     try {
       const res = await api.get('api/boards/' + boardId)
       AppState.board = res.data
@@ -35,6 +40,7 @@ class BoardsService {
 
   async createBoard(boardData) {
     try {
+      delete boardData.id
       const res = await api.post('api/boards', boardData)
       AppState.boards.push(res.data)
       return res.data._id

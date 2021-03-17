@@ -11,11 +11,22 @@ export class ListsController extends BaseController {
       .delete('/:id', this.delete)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .post('', this.create)
+      .get('', this.getAll)
+  }
+
+  async getAll(req, res, next) {
+    try {
+      const lists = await listsService.find()
+      res.send(lists)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async getById(req, res, next) {
     try {
-      res.send(await listsService.getListById(req.params.id))
+      const list = await listsService.getListById(req.params.id)
+      res.send(list)
     } catch (err) {
       next(err)
     }
@@ -23,7 +34,8 @@ export class ListsController extends BaseController {
 
   async getListsByBoard(req, res, next) {
     try {
-      res.send(await listsService.find(req.params.id))
+      const list = await listsService.find(req.params.id)
+      res.send(list)
     } catch (err) {
       next(err)
     }
@@ -34,7 +46,8 @@ export class ListsController extends BaseController {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
       req.body.creatorId = req.userInfo.id
       req.body.creator = req.userInfo
-      res.send(await listsService.createList(req.body))
+      const list = await listsService.createList(req.body)
+      res.send(list)
     } catch (error) {
       next(error)
     }
@@ -42,7 +55,8 @@ export class ListsController extends BaseController {
 
   async delete(req, res, next) {
     try {
-      res.send(await listsService.deleteList(req.params.id, req.userInfo.id))
+      const list = await listsService.deleteList(req.params.id, req.userInfo.id)
+      res.send(list)
     } catch (err) {
       next(err)
     }

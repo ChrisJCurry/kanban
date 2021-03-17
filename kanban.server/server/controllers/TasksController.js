@@ -18,7 +18,8 @@ export class TasksController extends BaseController {
 
   async getAll(req, res, next) {
     try {
-      res.send(await tasksService.find())
+      const tasks = await tasksService.find()
+      res.send(tasks)
     } catch (error) {
       next(error)
     }
@@ -26,7 +27,8 @@ export class TasksController extends BaseController {
 
   async getById(req, res, next) {
     try {
-      res.send(await tasksService.getTaskById(req.params.id))
+      const task = tasksService.getTaskById(req.params.id)
+      res.send(task)
     } catch (err) {
       next(err)
     }
@@ -35,7 +37,8 @@ export class TasksController extends BaseController {
   async getCommentsById(req, res, next) {
     logger.log(req.params.id)
     try {
-      res.send(await tasksService.getCommentsByTaskId(req.params.id))
+      const comments = await tasksService.getCommentsByTaskId(req.params.id)
+      res.send(comments)
     } catch (err) {
       next(err)
     }
@@ -46,7 +49,8 @@ export class TasksController extends BaseController {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
       req.body.creatorId = req.userInfo.id
       req.body.creator = req.userInfo
-      res.send(await tasksService.createTask(req.body))
+      const task = await tasksService.createTask(req.body)
+      res.send(task)
     } catch (error) {
       next(error)
     }
@@ -54,7 +58,8 @@ export class TasksController extends BaseController {
 
   async delete(req, res, next) {
     try {
-      res.send(await tasksService.deleteTask(req.params.id, req.userInfo.id))
+      const task = tasksService.deleteTask(req.params.id, req.userInfo.id)
+      res.send(task)
     } catch (err) {
       next(err)
     }

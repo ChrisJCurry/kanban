@@ -17,7 +17,8 @@ export class BoardsController extends BaseController {
 
   async getAll(req, res, next) {
     try {
-      res.send(await boardsService.find())
+      const board = await boardsService.find()
+      res.send(board)
     } catch (error) {
       next(error)
     }
@@ -25,7 +26,8 @@ export class BoardsController extends BaseController {
 
   async getById(req, res, next) {
     try {
-      res.send(await boardsService.getBoardById(req.params.id))
+      const board = await boardsService.getBoardById(req.params.id)
+      res.send(board)
     } catch (err) {
       next(err)
     }
@@ -33,7 +35,8 @@ export class BoardsController extends BaseController {
 
   async getListByBoardId(req, res, next) {
     try {
-      res.send(await listsService.find({ boardId: req.params.id }))
+      const board = await listsService.find({ boardId: req.params.id })
+      res.send(board)
     } catch (err) {
       next(err)
     }
@@ -44,7 +47,8 @@ export class BoardsController extends BaseController {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
       req.body.creatorId = req.userInfo.id
       req.body.creator = req.userInfo
-      res.send(await boardsService.createBoards(req.body))
+      const board = await boardsService.createBoards(req.body)
+      res.send(board)
     } catch (error) {
       next(error)
     }

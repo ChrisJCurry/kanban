@@ -15,7 +15,8 @@ export class CommentsController extends BaseController {
 
   async getAll(req, res, next) {
     try {
-      res.send(await commentsService.find())
+      const comments = await commentsService.find()
+      res.send(comments)
     } catch (error) {
       next(error)
     }
@@ -23,7 +24,8 @@ export class CommentsController extends BaseController {
 
   async getById(req, res, next) {
     try {
-      res.send(await commentsService.getCommentById(req.params.id))
+      const comment = await commentsService.getCommentById(req.params.id)
+      res.send(comment)
     } catch (err) {
       next(err)
     }
@@ -34,7 +36,8 @@ export class CommentsController extends BaseController {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
       req.body.creatorId = req.userInfo.id
       req.body.creator = req.userInfo
-      res.send(await commentsService.createComment(req.body))
+      const comment = await commentsService.createComment(req.body)
+      res.send(comment)
     } catch (error) {
       next(error)
     }
@@ -42,7 +45,8 @@ export class CommentsController extends BaseController {
 
   async delete(req, res, next) {
     try {
-      res.send(await commentsService.deleteComment(req.params.id, req.userInfo.id))
+      const comment = commentsService.deleteComment(req.params.id, req.userInfo.id)
+      res.send(comment)
     } catch (err) {
       next(err)
     }
