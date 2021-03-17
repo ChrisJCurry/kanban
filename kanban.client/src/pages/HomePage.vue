@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <h1>Boards</h1>
     <div class="row">
-      <div class="col">
+      <div class="col-3 flex-row jsutify-content-evenly">
         <Board v-for="boardData in state.boards" :key="boardData._id" :board="boardData" />
       </div>
     </div>

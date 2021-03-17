@@ -1,6 +1,10 @@
 <template>
   <div class="about">
-    <h1>This is the about page</h1>
+    <img src="" alt="">
+    <h1>O-R-G</h1>
+    <p>Organize - Rational Greatness</p>
+    <p>This is the page where we put the directiion for use, but this program is so simple you wont need this page.</p>
+    <h2>Thanks for Checking though!</h2>
   </div>
 </template>
 

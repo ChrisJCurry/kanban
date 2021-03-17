@@ -2,11 +2,8 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img
-          alt="logo"
-          src="../assets/img/cw-logo.png"
-          height="45"
-        />
+        <h1>O-R-G</h1>
+        <h3>Organize Rational Greatness</h3>
       </div>
     </router-link>
     <button

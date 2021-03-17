@@ -4,5 +4,6 @@ export class Board {
     this.title = data.title || 'Board'
     this.creator = data.creator
     this.creatorId = data.creatorId
+    this.createdAt = data.createdAt || ''
   }
 }
