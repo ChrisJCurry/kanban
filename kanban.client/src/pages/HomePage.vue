@@ -6,6 +6,9 @@
         <Board v-for="boardData in state.boards" :key="boardData._id" :board="boardData" />
       </div>
     </div>
+    <div class="row">
+      <Board v-for="boardData in state.boards" :key="boardData._id" :board="boardData" />
+    </div>
   </div>
 </template>
 
@@ -17,7 +20,8 @@ export default {
   name: 'Home',
   setup() {
     const state = reactive({
-      boards: computed(() => AppState.boards)
+      boards: computed(() => AppState.boards),
+      user: computed(() => AppState.user)
     })
     onMounted(async() => {
       await boardsService.getAllBoards()

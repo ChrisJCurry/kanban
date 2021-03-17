@@ -10,6 +10,8 @@
       Made with 💖 by CodeWorks
     </div>
   </footer>
+  <CreateBoardModal />
+  <CreateListModal />
 </template>
 
 <script>

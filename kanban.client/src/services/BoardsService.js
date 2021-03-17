@@ -37,7 +37,7 @@ class BoardsService {
     }
   }
 
-  async createBoard(boardData) {
+  async create(boardData) {
     try {
       delete boardData.id
       const res = await api.post('api/boards', boardData)

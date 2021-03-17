@@ -1,6 +1,15 @@
 <template>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#create-list">
+          Create List
+        </button>
+      </div>
+    </div>
+  </div>
   <div>
-    <List v-for="listData in state.lists" :key="listData._id" :list="listData" />
+    <List v-for="list in state.lists" :key="list._id" :list="list" />
   </div>
 </template>
 
