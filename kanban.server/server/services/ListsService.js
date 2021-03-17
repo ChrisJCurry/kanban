@@ -1,6 +1,5 @@
 import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
-import { logger } from '../utils/Logger'
 
 class ListsService {
   async find(query = {}) {
@@ -16,12 +15,12 @@ class ListsService {
     return list
   }
 
-  async createList(newBoard) {
+  async createList(newList) {
     try {
-      const res = await dbContext.Lists.create(newBoard)
+      const res = await dbContext.Lists.create(newList)
       return res
     } catch (err) {
-      logger.error(err)
+      throw new BadRequest('invalid')
     }
   }
 

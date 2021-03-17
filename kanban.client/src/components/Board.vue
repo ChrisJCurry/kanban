@@ -1,8 +1,15 @@
 <template>
   <div class="container-fluid">
-    <router-link :to="{name: 'BoardPage', params: {id: board.id}}">
-      <h1>{{ board.title }}</h1>
-    </router-link>
+    <div class="col-4">
+      <router-link :to="{name: 'BoardPage', params: {id: board.id}}">
+        <!--<h1>{{ board.title }}</h1>-->
+        <div class="card">
+          <div class="card-title text-center">
+            {{ board.title }}
+          </div>
+        </div>
+      </router-link>
+    </div>
   </div>
 </template>
 

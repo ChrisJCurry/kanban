@@ -20,5 +20,17 @@ class ListsService {
       logger.error(err)
     }
   }
+
+  async create(listData) {
+    logger.log('Before try: ', listData)
+    try {
+      const res = await api.post('api/lists', listData)
+      logger.log('after try', res.data)
+      AppState.lists.push(res.data)
+      return res.data._id
+    } catch (err) {
+      logger.error(err)
+    }
+  }
 }
 export const listsService = new ListsService()
