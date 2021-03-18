@@ -1,10 +1,19 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col">
+      <div class="col-12 text-right">
         <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#create-list">
           Create List
         </button>
+      </div>
+      <div class="row mr-5">
+        <div class="col-12">
+          <div>
+            <h2 class="title-font">
+              Board Title
+            </h2>
+          </div>
+        </div>
       </div>
     </div>
   </div>

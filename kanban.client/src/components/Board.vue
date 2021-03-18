@@ -1,24 +1,30 @@
 <template>
   <div class="body-text">
     <div class="row">
-      <router-link :to="{name: 'BoardPage', params: {id: board.id}}">
-        <div class="col-12">
+      <div class="col-12">
+        <router-link class="col-10" :to="{name: 'BoardPage', params: {id: board.id}}">
           <div class="card board mt-3">
             <div class="card-body">
-              <h5 class="card-title">
-                {{ board.title }}
-              </h5>
-              <h6 class="card-subtitle mb-2 text-muted">
-                <h6>
-                  {{ getBoardDate(board.id) }}
-                </h6>
+              <div class="row">
+                <h5 class="card-title title-font">
+                  {{ board.title }}
+                </h5>
+                <div v-if="board.creator && state.user"></div>
+                <button v-if="state.user.email===board.creator.email" @click="deleteBoard" type="button" class=" col-2 btn btn-danger del-button">
+                  x
+                </button>
+              </div>
+              <h6 class="card-subtitle mb-2 text-muted ">
+                <p class="text-right body-font mr-3 fixed-bottom">
+                  <span>created:{{ getBoardDate(board.id) }}</span>
+                </p>
               </h6>
               <p class="card-text">
               </p>
             </div>
           </div>
-        </div>
-      </router-link>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -34,7 +40,7 @@ export default {
       type: Object, required: true
     }
   },
-  setup() {
+  setup(props) {
     const state = reactive({
       user: computed(() => AppState.user)
     })
@@ -42,6 +48,9 @@ export default {
       state,
       getBoardDate(id) {
         return boardsService.getBoardDate(id)
+      },
+      deleteBoard() {
+        return boardsService.deleteBoard(props.board.id)
       }
     }
   }
@@ -60,4 +69,14 @@ export default {
   filter: drop-shadow(1px 3px 3px rgb(3, 3, 65))
 }
 
+.date{
+  position: absolute;
+  transform: ();
+
+}
+
+.del-button{
+  z-index: 1;
+  height: 2.5rem;
+}
 </style>

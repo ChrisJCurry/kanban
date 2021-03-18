@@ -4,6 +4,7 @@
     <button type="button" class="btn btn-primary" @click="state.showCreate = !state.showCreate" data-toggle="modal" data-target="#create-board">
       Create Board
     </button>
+
     <div class="row justify-content-start">
       <Board class="col-3"
              v-for="

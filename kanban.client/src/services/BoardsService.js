@@ -56,7 +56,7 @@ class BoardsService {
     }
   }
 
-  async deleteBoard(boardId, routePath) {
+  async deleteBoard(boardId) {
     const res = window.confirm('are you sure you want to delete your board?')
     if (!res) {
       return
