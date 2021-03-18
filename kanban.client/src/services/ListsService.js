@@ -30,5 +30,19 @@ class ListsService {
       logger.error(err)
     }
   }
+
+  async delete(listId) {
+    const res = window.confirm('are you sure you want to delete your list?')
+    if (!res) {
+      return
+    }
+    try {
+      const board = AppState.board
+      await api.delete('/api/lists/' + listId)
+      this.getActiveLists(board._id)
+    } catch (err) {
+      logger.error(err)
+    }
+  }
 }
 export const listsService = new ListsService()
