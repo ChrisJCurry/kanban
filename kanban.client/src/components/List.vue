@@ -59,7 +59,7 @@ export default {
   border: 1.25px blue;
   border-radius: 8%;
   background-color: bisque;
-
+    filter: drop-shadow(0px, 0px, 3px, 3px, rgb(3, 3, 65))
 }
 
 </style>

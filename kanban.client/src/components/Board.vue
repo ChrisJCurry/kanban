@@ -55,7 +55,7 @@ export default {
   border: 1.25px black;
   border-radius: 8%;
   background-color: bisque;
-
+  filter: drop-shadow(0, 0, 3px, 3px, rgb(3, 3, 65))
 }
 
 </style>

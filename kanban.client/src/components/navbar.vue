@@ -121,4 +121,6 @@ a:hover {
 .nav-item .nav-link.router-link-exact-active{
   color: var(--primary);
 }
+
+
 </style>
