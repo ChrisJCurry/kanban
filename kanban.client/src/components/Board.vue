@@ -2,15 +2,15 @@
   <div class="body-text">
     <div class="row">
       <div class="col-12">
-        <router-link class="col-10" :to="{name: 'BoardPage', params: {id: board.id}}">
+        <router-link class="col-8" :to="{name: 'BoardPage', params: {id: board.id}}">
           <div class="card board mt-3">
             <div class="card-body">
               <div class="row">
-                <h5 class="card-title title-font">
+                <h5 class="card-title col-8 title-font">
                   {{ board.title }}
                 </h5>
                 <div v-if="board.creator && state.user"></div>
-                <button v-if="state.user.email===board.creator.email" @click="deleteBoard" type="button" class=" col-2 btn btn-danger del-button">
+                <button v-if="state.user.email===board.creator.email" @click="deleteBoard" type="button" class=" col-2 offset-2 btn btn-danger del-button">
                   x
                 </button>
               </div>
@@ -76,7 +76,6 @@ export default {
 }
 
 .del-button{
-  z-index: 1;
   height: 2.5rem;
 }
 </style>

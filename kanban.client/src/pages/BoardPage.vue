@@ -10,7 +10,7 @@
         <div class="col-12">
           <div>
             <h2 class="title-font">
-              Board Title
+              {{ state.board.title }}
             </h2>
           </div>
         </div>
