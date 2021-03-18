@@ -6,7 +6,7 @@
     </button>
 
     <div class="row justify-content-start">
-      <Board class="col-3"
+      <Board class="col-lg-3 col-md-6 col-sm-12"
              v-for="
                boardData
                  in
