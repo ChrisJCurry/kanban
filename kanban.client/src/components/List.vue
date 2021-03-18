@@ -15,7 +15,7 @@
     <div v-if="state.showCreate">
       <form @submit.prevent="create">
         <input type="text" placeholder="Enter task here..." v-model="state.task.title">
-        <button type="submit">
+        <button type="submit" class="btn btn-secondary">
           S
         </button>
       </form>
@@ -51,7 +51,6 @@ export default {
     return {
       state,
       async create() {
-        logger.log('Create: ', props.list._id)
         try {
           state.task.listId = props.list._id
           await tasksService.create(state.task)

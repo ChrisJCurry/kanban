@@ -25,7 +25,6 @@ class TasksService {
     try {
       const res = await api.post('api/tasks', taskData)
       const tasks = AppState.tasks[taskData.listId] || []
-      debugger
       AppState.tasks[taskData.listId] = [res.data, ...tasks]
       return res.data._id
     } catch (err) {

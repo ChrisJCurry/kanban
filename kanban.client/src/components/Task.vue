@@ -1,18 +1,23 @@
 <template>
-  <div class="row">
-    <div class="col-8">
+  <div class="row bg-muted">
+    <div class="col-1">
+      <button type="button" class="btn btn-primary">
+        x
+      </button>
+    </div>
+    <div class="col-7 pl-4">
       <h4>{{ task.title }}</h4>
     </div>
     <div class="col-4">
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle"
+        <button class="btn btn-secondary btn-sm dropdown-toggle"
                 type="button"
                 id="taskDropDown"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
         >
-          Dropdown button
+          lists
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <div v-for="list in state.lists" :key="list._id">
