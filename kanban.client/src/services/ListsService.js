@@ -33,7 +33,7 @@ class ListsService {
   async create(listData) {
     try {
       const res = await api.post('api/lists', listData)
-      AppState.lists.push(res.data)
+      AppState.lists.unshift(res.data)
       return res.data._id
     } catch (err) {
       logger.error(err)
