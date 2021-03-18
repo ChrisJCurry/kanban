@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="list">
     <h4><span>{{ list.title }}</span></h4>
     <button class="btn btn-primary" type="button" @click="state.showCreate = !state.showCreate">
       Add task
@@ -53,5 +53,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.list{
+  height: 5vh;
+  border: 1.25px blue;
+  border-radius: 8%;
+  background-color: bisque;
+
+}
+
 </style>

@@ -28,5 +28,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+.task{
+  height: 4vh;
+  border-radius: 8%;
+  background-color: bisque;
+
+}
+
 </style>

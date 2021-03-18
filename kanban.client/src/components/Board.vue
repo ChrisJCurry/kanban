@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <router-link :to="{name: 'BoardPage', params: {id: board.id}}">
-      <div class="card" style="width: 18rem;">
+      <div class="card board" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">
             {{ board.title }}
@@ -49,5 +49,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.board{
+  height: 5vh;
+  border: 1.25px black;
+  border-radius: 8%;
+  background-color: bisque;
+
+}
+
 </style>

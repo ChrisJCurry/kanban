@@ -29,5 +29,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.board{
+  height: 5vh;
+  border: 1.5px black;
+  border-radius: 8%;
+  background-color: bisque;
+
+}
+
 </style>
