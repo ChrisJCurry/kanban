@@ -11,9 +11,6 @@
              :board="boardData"
       />
     </div>
-    <div class="row">
-      <Board v-for="boardData in state.boards" :key="boardData._id" :board="boardData" />
-    </div>
   </div>
 </template>
 
