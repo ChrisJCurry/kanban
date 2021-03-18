@@ -30,7 +30,8 @@ const routes = [
   {
     path: '/board/:id',
     name: 'BoardPage',
-    component: loadPage('BoardPage')
+    component: loadPage('BoardPage'),
+    beforeEnter: authGuard
   }
 ]
 

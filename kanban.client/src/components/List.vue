@@ -70,7 +70,7 @@ export default {
 .list{
   height: 5vh;
   border: 1.25px blue;
-  border-radius: 8%;
+  border-radius: 10px;
   background-color: bisque;
     filter: drop-shadow(0px, 0px, 3px, 3px, rgb(3, 3, 65))
 }

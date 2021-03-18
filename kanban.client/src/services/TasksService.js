@@ -24,7 +24,9 @@ class TasksService {
   async create(taskData) {
     try {
       const res = await api.post('api/tasks', taskData)
-      AppState.tasks[taskData.listId].unshift(res.data)
+      const tasks = AppState.tasks[taskData.listId] || []
+      debugger
+      AppState.tasks[taskData.listId] = [res.data, ...tasks]
       return res.data._id
     } catch (err) {
       logger.error(err)
