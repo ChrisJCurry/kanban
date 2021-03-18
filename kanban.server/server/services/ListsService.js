@@ -15,12 +15,21 @@ class ListsService {
     return list
   }
 
+  async getTasksByListId(id) {
+    const tasks = await dbContext.Tasks.find({ listId: id })
+    if (!tasks) {
+      throw new BadRequest(`${id}`)
+    }
+
+    return tasks
+  }
+
   async createList(newList) {
     try {
       const res = await dbContext.Lists.create(newList)
       return res
     } catch (err) {
-      throw new BadRequest('invalid')
+      throw new BadRequest('invalid list')
     }
   }
 

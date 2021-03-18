@@ -21,6 +21,15 @@ class ListsService {
     }
   }
 
+  async getTasksByListId(listId) {
+    try {
+      const res = await api.get('api/lists/' + listId + '/tasks')
+      AppState.tasks[listId] = res.data
+    } catch (err) {
+      logger.error(err)
+    }
+  }
+
   async create(listData) {
     try {
       const res = await api.post('api/lists', listData)

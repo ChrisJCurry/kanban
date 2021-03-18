@@ -20,15 +20,16 @@
         </button>
       </form>
     </div>
-    <Task v-for="task in state.tasks" :key="task.id" :task="task" />
+    <Task v-for="task in state.tasks" :key="task._id" :task="task" />
   </div>
 </template>
 
 <script>
-import { computed, reactive } from 'vue'
+import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
-import { tasksService } from '../services/TasksService'
 import { logger } from '../utils/Logger'
+import { tasksService } from '../services/TasksService'
+import { listsService } from '../services/ListsService'
 
 export default {
   name: 'List',
@@ -40,16 +41,19 @@ export default {
   setup(props) {
     const state = reactive({
       user: computed(() => AppState.user),
-      tasks: computed(() => AppState.tasks),
+      tasks: computed(() => AppState.tasks[props.list._id]),
       task: {},
       showCreate: false
+    })
+    onMounted(() => {
+      listsService.getTasksByListId(props.list._id)
     })
     return {
       state,
       async create() {
+        logger.log('Create: ', props.list._id)
         try {
           state.task.listId = props.list._id
-          logger.log(state.task, AppState.tasks)
           await tasksService.create(state.task)
           state.task = {}
         } catch (err) {

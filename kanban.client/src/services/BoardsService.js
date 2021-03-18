@@ -11,7 +11,6 @@ class BoardsService {
       // AppState.boards = res.data
 
       AppState.boards = res.data.map(b => new Board(b))
-      logger.log('it worked!', AppState.boards)
     } catch (error) {
       logger.log(error)
     }
@@ -71,7 +70,6 @@ class BoardsService {
 
   getBoardDate(id) {
     const board = AppState.boards.find(b => b.id === id)
-    // logger.log('Created at: ', board.createdAt)
     if (board) {
       const boardDate = board.createdAt
       const updatedDate = new Date(boardDate)

@@ -12,6 +12,7 @@ export class ListsController extends BaseController {
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .post('', this.create)
       .get('', this.getAll)
+      .get('/:id/tasks', this.getTasksByListId)
   }
 
   async getAll(req, res, next) {
@@ -57,6 +58,16 @@ export class ListsController extends BaseController {
     try {
       const list = await listsService.deleteList(req.params.id, req.userInfo.id)
       res.send(list)
+    } catch (err) {
+      next(err)
+    }
+  }
+
+  async getTasksByListId(req, res, next) {
+    try {
+      const list = req.params.id
+      const tasks = await listsService.getTasksByListId(list)
+      res.send(tasks)
     } catch (err) {
       next(err)
     }
