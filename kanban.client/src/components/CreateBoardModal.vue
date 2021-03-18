@@ -19,7 +19,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form class="form-inline">
+            <form class="form-inline" @submit.prevent="create">
               <div class="form-group">
                 <div class="row">
                   <div class="col-6 col-sm-3 col-md-3">
@@ -34,15 +34,15 @@
                   </div>
                 </div>
               </div>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
+              <button class="btn btn-success" type="submit">
+                Create
+              </button>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-              Close
-            </button>
-            <button class="btn btn-success" @click="create">
-              Create
-            </button>
           </div>
         </div>
       </div>
