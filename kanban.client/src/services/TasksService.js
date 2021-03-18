@@ -1,6 +1,7 @@
 import { api } from './AxiosService'
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
+import { listsService } from './ListsService'
 
 class TasksService {
   async getAllTasks() {
@@ -27,6 +28,32 @@ class TasksService {
       const tasks = AppState.tasks[taskData.listId] || []
       AppState.tasks[taskData.listId] = [res.data, ...tasks]
       return res.data._id
+    } catch (err) {
+      logger.error(err)
+    }
+  }
+
+  async delete(task) {
+    try {
+      const res = await api.delete('api/tasks/' + task._id)
+
+      listsService.getTasksByListId(task.listId)
+      return res.data
+    } catch (err) {
+      logger.error(err)
+    }
+  }
+
+  async move(task, listId) {
+    try {
+      const oldId = task.listId
+      task.listId = listId
+      delete AppState.tasks[oldId][task]
+      const res = await api.put('/api/tasks/' + task._id, task)
+      listsService.getTasksByListId(task.listId)
+      listsService.getTasksByListId(oldId)
+      AppState.tasks[listId] = res.data
+      return res.data
     } catch (err) {
       logger.error(err)
     }

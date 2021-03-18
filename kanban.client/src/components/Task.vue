@@ -1,7 +1,7 @@
 <template>
   <div class="row bg-muted">
     <div class="col-1">
-      <button type="button" class="btn btn-primary">
+      <button type="button" class="btn btn-primary" @click="deleteTask">
         x
       </button>
     </div>
@@ -21,7 +21,7 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <div v-for="list in state.lists" :key="list._id">
-            {{ list.title }}
+            <a class="dropdown-item" @click="move(task, list._id)">{{ list.title }}</a>
           </div>
           <!-- <a class="dropdown-item" href="#">Action</a> -->
         </div>
@@ -35,6 +35,7 @@
 <script>
 import { computed, reactive } from 'vue'
 import { AppState } from '../AppState'
+import { tasksService } from '../services/TasksService'
 
 export default {
   name: 'Task',
@@ -43,13 +44,19 @@ export default {
       type: Object, required: true
     }
   },
-  setup() {
+  setup(props) {
     const state = reactive({
       user: computed(() => AppState.user),
       lists: computed(() => AppState.lists)
     })
     return {
-      state
+      state,
+      async deleteTask() {
+        tasksService.delete(props.task)
+      },
+      async move(task, listId) {
+        tasksService.move(task, listId)
+      }
     }
   }
 

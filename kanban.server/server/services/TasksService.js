@@ -41,6 +41,15 @@ class TasksService {
 
     return tasksToDelete
   }
+
+  async move(taskId, task) {
+    const taskToMove = await dbContext.Tasks.findByIdAndUpdate(taskId, task, { new: true })
+
+    if (!taskToMove) {
+      throw new BadRequest('invalid task or list id')
+    }
+    return taskToMove
+  }
 }
 
 export const tasksService = new TasksService()

@@ -11,6 +11,7 @@ export class TasksController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('/:id/comments', this.getCommentsById)
       .get('/:id', this.getById)
+      .put('/:id', this.move)
       .delete('/:id', this.delete)
       .post('', this.create)
   }
@@ -57,6 +58,15 @@ export class TasksController extends BaseController {
   async delete(req, res, next) {
     try {
       const task = tasksService.deleteTask(req.params.id, req.userInfo.id)
+      res.send(task)
+    } catch (err) {
+      next(err)
+    }
+  }
+
+  async move(req, res, next) {
+    try {
+      const task = tasksService.move(req.body.id, req.body)
       res.send(task)
     } catch (err) {
       next(err)
