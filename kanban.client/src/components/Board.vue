@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <router-link :to="{name: 'BoardPage', params: {id: board.id}}">
+    <router-link :to="{name: 'BoardPage', params: {id: board._id}}">
       <div class="card board" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">
@@ -8,7 +8,7 @@
           </h5>
           <h6 class="card-subtitle mb-2 text-muted">
             <h4>
-              {{ getBoardDate(board._id) }}
+              {{ getBoardDate(board.id) }}
             </h4>
           </h6>
           <p class="card-text">

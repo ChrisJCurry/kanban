@@ -68,5 +68,27 @@ class BoardsService {
       logger.error(err)
     }
   }
+
+  getBoardDate(id) {
+    const board = AppState.boards.find(b => b.id === id)
+    logger.log('Created at: ', board.createdAt)
+    if (board) {
+      const boardDate = board.createdAt
+      const updatedDate = new Date(boardDate)
+      const year = updatedDate.getFullYear()
+      const month = (this.fixLowNumber(updatedDate.getMonth() + 1))
+      const day = this.fixLowNumber(updatedDate.getDate())
+      const hour = this.fixLowNumber(updatedDate.getHours())
+      const minute = this.fixLowNumber(updatedDate.getMinutes())
+      const newDate = `${month}-${day}-${year} ${hour}:${minute}`
+      return newDate
+    }
+
+    return 0
+  }
+
+  fixLowNumber(n) {
+    return (n < 10 ? '0' : '') + n
+  }
 }
 export const boardsService = new BoardsService()
