@@ -2,8 +2,12 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <h1>O-R-G</h1>
-        <h3>Organize Rational Greatness</h3>
+        <h1 class="title-font">
+          O-R-G
+        </h1>
+        <h3 class="body-font">
+          Organize Rational Greatness
+        </h3>
       </div>
     </router-link>
     <button

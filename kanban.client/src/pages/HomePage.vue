@@ -4,7 +4,7 @@
     <button type="button" class="btn btn-primary" @click="state.showCreate = !state.showCreate" data-toggle="modal" data-target="#create-board">
       Create Board
     </button>
-    <div class="row">
+    <div class="row justify-content-start">
       <Board class="col-3"
              v-for="
                boardData
@@ -41,7 +41,6 @@ export default {
 
 <style scoped lang="scss">
 .home{
-  text-align: center;
   user-select: none;
   > img{
     height: 200px;

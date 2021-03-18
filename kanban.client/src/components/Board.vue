@@ -1,25 +1,25 @@
 <template>
-  <div class="container-fluid">
-    <router-link :to="{name: 'BoardPage', params: {id: board.id}}">
-      <div class="card board" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">
-            {{ board.title }}
-          </h5>
-          <h6 class="card-subtitle mb-2 text-muted">
-            <h4>
-              {{ getBoardDate(board.id) }}
-            </h4>
-          </h6>
-          <p class="card-text">
-          </p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
+  <div class="body-text">
+    <div class="row">
+      <router-link :to="{name: 'BoardPage', params: {id: board.id}}">
+        <div class="col-12">
+          <div class="card board mt-3">
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ board.title }}
+              </h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                <h6>
+                  {{ getBoardDate(board.id) }}
+                </h6>
+              </h6>
+              <p class="card-text">
+              </p>
+            </div>
+          </div>
         </div>
-
-        <h1>{{ board.title }}</h1>
-      </div>
-    </router-link>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -50,12 +50,14 @@ export default {
 </script>
 
 <style scoped>
+
 .board{
-  height: 5vh;
-  border: 1.25px black;
-  border-radius: 8%;
-  background-color: bisque;
-  filter: drop-shadow(0, 0, 3px, 3px, rgb(3, 3, 65))
+  height: 10rem;
+  width: 20rem;
+  border: solid 3px black;
+  border-radius: 10px;
+  background-color: rgb(230, 221, 210);
+  filter: drop-shadow(1px 3px 3px rgb(3, 3, 65))
 }
 
 </style>
