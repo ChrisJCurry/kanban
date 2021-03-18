@@ -16,9 +16,9 @@
         </div>
       </div>
     </div>
-  </div>
-  <div>
-    <List v-for="list in state.lists" :key="list._id" :list="list" />
+    <div>
+      <List class="my-5" v-for="list in state.lists" :key="list._id" :list="list" />
+    </div>
   </div>
 </template>
 

@@ -1,16 +1,24 @@
 <template>
   <div class="list">
-    <h4><span>{{ list.title }}</span></h4>
-    <button class="btn btn-primary" type="button" @click="state.showCreate = !state.showCreate">
-      Add task
-    </button>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-8 my-2">
+          <h4><span>{{ list.title }}</span></h4>
+        </div>
+        <div class="col-4 my-1">
+          <button class="btn btn-primary" type="button" @click="state.showCreate = !state.showCreate">
+            Add task
+          </button>
+        </div>
+      </div>
+    </div>
     <div v-if="state.showCreate">
-      <div class="input-group">
-        <input type="text" id="task" placeholder="Enter task here..." v-model="state.task.title">
-        <button type="button" @click="create">
+      <form @submit.prevent="create">
+        <input type="text" placeholder="Enter task here..." v-model="state.task.title">
+        <button type="submit">
           S
         </button>
-      </div>
+      </form>
     </div>
     <Task v-for="task in state.tasks" :key="task.id" :task="task" />
   </div>
@@ -41,7 +49,7 @@ export default {
       async create() {
         try {
           state.task.listId = props.list._id
-          logger.log(state.task)
+          logger.log(state.task, AppState.tasks)
           await tasksService.create(state.task)
           state.task = {}
         } catch (err) {

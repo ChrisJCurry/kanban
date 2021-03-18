@@ -1,5 +1,5 @@
 <template>
-  <div class="col-9 col-md-10 pt-0">
+  <div class="col-9 col-md-10 m-3">
     <h4><span>{{ task.title }}</span></h4>
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle"
