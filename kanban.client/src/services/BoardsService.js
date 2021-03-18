@@ -71,7 +71,7 @@ class BoardsService {
 
   getBoardDate(id) {
     const board = AppState.boards.find(b => b.id === id)
-    logger.log('Created at: ', board.createdAt)
+    // logger.log('Created at: ', board.createdAt)
     if (board) {
       const boardDate = board.createdAt
       const updatedDate = new Date(boardDate)

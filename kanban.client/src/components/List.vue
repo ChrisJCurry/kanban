@@ -6,13 +6,13 @@
     </button>
     <div v-if="state.showCreate">
       <div class="input-group">
-        <input type="text" id="task" placeholder="Enter task here...">
+        <input type="text" id="task" placeholder="Enter task here..." v-model="state.task.title">
         <button type="button" @click="create">
           S
         </button>
       </div>
     </div>
-    <div v-for="task in state.tasks" :key="task._id"></div>
+    <Task v-for="task in state.tasks" :key="task.id" :task="task" />
   </div>
 </template>
 
@@ -41,8 +41,9 @@ export default {
       async create() {
         try {
           state.task.listId = props.list._id
-          await tasksService.create(state.list)
-          state.list = {}
+          logger.log(state.task)
+          await tasksService.create(state.task)
+          state.task = {}
         } catch (err) {
           logger.error(err)
         }

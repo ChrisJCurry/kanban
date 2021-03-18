@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <router-link :to="{name: 'BoardPage', params: {id: board._id}}">
+    <router-link :to="{name: 'BoardPage', params: {id: board.id}}">
       <div class="card board" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">
