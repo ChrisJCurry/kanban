@@ -1,6 +1,9 @@
 <template>
   <div class="container-fluid">
     <h1>Boards</h1>
+    <button type="button" class="btn btn-primary" @click="state.showCreate = !state.showCreate" data-toggle="modal" data-target="#create-board">
+      Create Board
+    </button>
     <div class="row">
       <Board class="col-3"
              v-for="
@@ -23,7 +26,8 @@ export default {
   setup() {
     const state = reactive({
       boards: computed(() => AppState.boards),
-      user: computed(() => AppState.user)
+      user: computed(() => AppState.user),
+      showCreate: false
     })
     onMounted(async() => {
       await boardsService.getAllBoards()
