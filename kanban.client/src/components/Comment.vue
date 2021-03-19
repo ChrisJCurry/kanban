@@ -1,7 +1,7 @@
 <template>
   <div class="col-10 offset-2" v-if="comment.creator">
     <h5>
-      <button class="btn btn-danger btn-sm" @click="deleteComment">
+      <button class="btn btn-danger btn-sm" @click="deleteComment" v-if="state.user.email === comment.creator.email">
         x
       </button>
       <span class="mr-4">{{ comment.creator.nickname }}: {{ comment.body }}</span>
