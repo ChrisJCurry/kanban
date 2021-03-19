@@ -1,5 +1,5 @@
 <template>
-  <div class="row bg-muted">
+  <div class="row">
     <div class="col-1">
       <button type="button" class="btn btn-primary" @click="deleteTask">
         x
