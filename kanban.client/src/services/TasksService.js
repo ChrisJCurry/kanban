@@ -25,10 +25,8 @@ class TasksService {
 
   async getCommentsByTaskId(taskId) {
     try {
-      logger.log('gC taskId', taskId)
       const res = await api.get('api/tasks/' + taskId + '/comments')
       AppState.comments[taskId] = res.data
-      logger.log('Comments: ', AppState.comments[taskId])
     } catch (err) {
       logger.error(err)
     }

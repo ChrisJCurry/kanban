@@ -82,14 +82,12 @@ export default {
     })
     onMounted(() => {
       tasksService.getCommentsByTaskId(props.task._id)
-      logger.log('state.comments: ', state.comments)
     })
     return {
       state,
       async createComment() {
         try {
           state.comment.taskId = props.task._id
-          logger.log('Comment: ', state.comment)
           await commentsService.create(state.comment)
           state.comment = {}
         } catch (err) {
