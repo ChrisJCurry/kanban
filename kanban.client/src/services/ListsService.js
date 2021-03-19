@@ -1,12 +1,13 @@
 import { api } from './AxiosService'
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
+import { List } from '../models/List'
 
 class ListsService {
   async getAllLists() {
     try {
       const res = await api.get('api/lists')
-      AppState.boards = res.data
+      AppState.lists = res.data.map(l => new List(l))
     } catch (error) {
       logger.log(error)
     }
@@ -33,7 +34,7 @@ class ListsService {
   async create(listData) {
     try {
       const res = await api.post('api/lists', listData)
-      AppState.lists.unshift(res.data)
+      AppState.lists.push(res.data)
       return res.data._id
     } catch (err) {
       logger.error(err)

@@ -1,9 +1,11 @@
 <template>
   <div class="container-fluid">
     <h1>Boards</h1>
-    <button type="button" class="btn btn-primary" @click="state.showCreate = !state.showCreate" data-toggle="modal" data-target="#create-board">
-      Create Board
-    </button>
+    <div v-if="state.user.isAuthenticated">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-board">
+        Create Board
+      </button>
+    </div>
 
     <div class="row justify-content-start">
       <Board class="col-lg-3 col-md-6 col-sm-12"

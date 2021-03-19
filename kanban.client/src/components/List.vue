@@ -1,36 +1,40 @@
 <template>
-  <div class="body-text card">
-    <div class="row">
-      <div class="col-8 my-2">
-        <h4><span>{{ list.title }}</span></h4>
-      </div>
-      <div class="col-4 my-1">
-        <div>
-          <button class="btn btn-primary mr-1" type="button" @click="state.showCreate = !state.showCreate">
-            Add task
-          </button>
-          <button type="button" class="btn btn-primary">
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="body-text card py-2">
+      <div class="row">
+        <div class="col-8 col-lg-9 my-2">
+          <h4 class="pl-4">
+            <span>{{ list.title }}</span>
+          </h4>
+        </div>
+        <div class="col-1 offset-2 offset-md-1 col-lg-1 my-2 pl-2" v-if="state.user.email === list.creator.email">
+          <button @click="deleteList" class="btn btn-danger">
             x
           </button>
         </div>
-      </div>
-      <div class="col-12">
-        <div class="row">
-          <div class="col-12">
-            <form @submit.prevent="create">
-              <input type="text" placeholder="Enter task here..." v-model="state.task.title">
-              <button type="submit" class="btn btn-secondary">
-                S
-              </button>
-            </form>
-            <div class="col-10 offset-1">
-              <Task v-for="task in state.tasks" :key="task._id" :task="task" />
+        <div class="col-12 col-lg-6 offset-sm-1 my-1 ml-4">
+          <div>
+            <button class="btn btn-primary mr-1" type="button" @click="state.showCreate = !state.showCreate">
+              Add task
+            </button>
+          </div>
+        </div>
+        <div class="col-8 offset-2">
+          <div class="row">
+            <div class="col-12">
+              <form @submit.prevent="createTask" v-if="state.showCreate">
+                <input type="text" placeholder="Enter task here..." v-model="state.task.title">
+                <button type="submit" class="btn btn-secondary">
+                  S
+                </button>
+              </form>
             </div>
           </div>
         </div>
+        <div class="col-10 offset-1">
+          <Task class="border border-danger" v-for="task in state.tasks" :key="task._id" :task="task" />
+        </div>
       </div>
-    </div>
-    <div v-if="state.showCreate">
     </div>
   </div>
 </template>
@@ -61,7 +65,7 @@ export default {
     })
     return {
       state,
-      async create() {
+      async createTask() {
         try {
           state.task.listId = props.list._id
           await tasksService.create(state.task)
@@ -69,6 +73,9 @@ export default {
         } catch (err) {
           logger.error(err)
         }
+      },
+      async deleteList() {
+        await listsService.delete(props.list._id)
       }
     }
   }

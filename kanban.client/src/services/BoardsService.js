@@ -40,7 +40,7 @@ class BoardsService {
     try {
       delete boardData.id
       const res = await api.post('api/boards', boardData)
-      AppState.boards.unshift(res.data)
+      AppState.boards.push(res.data)
       return res.data._id
     } catch (err) {
       logger.error(err)

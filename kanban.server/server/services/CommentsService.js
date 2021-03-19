@@ -16,9 +16,9 @@ class CommentsService {
     return comment
   }
 
-  async createComment(newBoard) {
+  async createComment(newComment) {
     try {
-      const res = await dbContext.Comments.create(newBoard)
+      const res = await dbContext.Comments.create(newComment)
       return res
     } catch (err) {
       logger.error(err)

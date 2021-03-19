@@ -2,12 +2,13 @@ import { api } from './AxiosService'
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { listsService } from './ListsService'
+import { Task } from '../models/Task'
 
 class TasksService {
   async getAllTasks() {
     try {
       const res = await api.get('api/tasks')
-      AppState.boards = res.data
+      AppState.tasks = res.data.map(t => new Task(t))
     } catch (error) {
       logger.log(error)
     }
@@ -17,6 +18,17 @@ class TasksService {
     try {
       const res = await api.get('api/boards/' + boardId + '/tasks')
       AppState.tasks = res.data
+    } catch (err) {
+      logger.error(err)
+    }
+  }
+
+  async getCommentsByTaskId(taskId) {
+    try {
+      logger.log('gC taskId', taskId)
+      const res = await api.get('api/tasks/' + taskId + '/comments')
+      AppState.comments[taskId] = res.data
+      logger.log('Comments: ', AppState.comments[taskId])
     } catch (err) {
       logger.error(err)
     }

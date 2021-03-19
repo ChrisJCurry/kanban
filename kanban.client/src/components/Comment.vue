@@ -1,13 +1,18 @@
 <template>
-  <div class="col-9 col-md-10 pt-0">
-    <h5>{{ comment.creator }}</h5>
-    <h5>{{ comment.body }}</h5>
+  <div class="col-10 offset-2" v-if="comment.creator">
+    <h5>
+      <button class="btn btn-danger btn-sm" @click="deleteComment">
+        x
+      </button>
+      <span class="mr-4">{{ comment.creator.nickname }}: {{ comment.body }}</span>
+    </h5>
   </div>
 </template>
 
 <script>
 import { computed, reactive } from 'vue'
 import { AppState } from '../AppState'
+import { commentsService } from '../services/CommentsService'
 
 export default {
   name: 'Comment',
@@ -16,13 +21,16 @@ export default {
       type: Object, required: true
     }
   },
-  setup() {
+  setup(props) {
     const state = reactive({
       user: computed(() => AppState.user),
       comments: computed(() => AppState.comments)
     })
     return {
-      state
+      state,
+      async deleteComment() {
+        commentsService.delete(props.comment)
+      }
     }
   }
 

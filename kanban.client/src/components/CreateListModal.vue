@@ -19,10 +19,10 @@
             </button>
           </div>
           <div class="modal-body">
-            <form class="form-inline">
+            <form class="form" @submit.prevent="create">
               <div class="form-group">
                 <div class="row">
-                  <div class="col-6 col-sm-3 col-md-3">
+                  <div class="col-12">
                     <input type="text"
                            name="title"
                            id="list-title"
@@ -34,15 +34,17 @@
                   </div>
                 </div>
               </div>
+              <div class="text-center d-flex justify-content-between">
+                <button type="button" class="btn btn-secondary mx-3" data-dismiss="modal">
+                  Close
+                </button>
+                <button class="btn btn-success mx-3" type="submit">
+                  Create
+                </button>
+              </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-              Close
-            </button>
-            <button class="btn btn-success" @click="create">
-              Create
-            </button>
           </div>
         </div>
       </div>
